@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "corpus_collector"
+version = "0.1.0"
+dependencies = [
+  "setuptools==80.9.0",
+  "selenium==4.39.0",
+  "selenium-stealth==1.0.6",
+  "webdriver-manager==4.0.2",
+  "undetected-chromedriver==3.5.5",
+  "PyYAML==6.0.3",
+  "python-box==7.3.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

@@ -1,0 +1,3 @@
+include:
+ - logging.yaml
+ - scraping_configs.yaml
