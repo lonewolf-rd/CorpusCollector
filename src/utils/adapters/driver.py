@@ -26,6 +26,4 @@ class DriverAdapter:
             self.logger.error("[DriverAdapter](_init_driver) Error While Initializing Driver!")
             raise driver_err
 
-
-if __name__ == "__main__":
-    driver_adapter = DriverAdapter()
+    
