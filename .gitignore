@@ -27,7 +27,7 @@ share/python-wheels/
 MANIFEST
 
 # Logger
-~./debugging.txt
+*.txt
 
 # Vscode
 .vscode/
