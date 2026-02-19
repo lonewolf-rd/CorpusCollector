@@ -13,6 +13,8 @@ dependencies = [
   "undetected-chromedriver==3.5.5",
   "PyYAML==6.0.3",
   "python-box==7.3.2",
+  "langdetect==1.0.9",
+  "tqdm==4.67.2",
 ]
 
 [tool.setuptools.packages.find]

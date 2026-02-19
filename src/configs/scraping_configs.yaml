@@ -1,3 +1,12 @@
 driver:
   version: 144
+  timeout: 10
+
+xpaths:
+  source: "dergipark"
+  base_url: https://dergipark.org.tr/tr/search?q=*&section=article
+  page_test: //div[@id='kt_content']
+  article_cards: //div[@class='article-cards']//div[@class='card article-card dp-card-outline article-add-to-project-actions']
+  article_title: .//div[@class='card-body']//h5[@class='card-title']/a[1]
+  no_result_id: //div[@id='search-no-result']
 
