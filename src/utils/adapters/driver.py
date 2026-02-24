@@ -1,20 +1,16 @@
-from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
-from src.helpers.lang_detector import LangDetector
 from src.utils.config_manager import ConfigManager
-from selenium.webdriver.common.by import By
 from src.utils.logger import AppLogger
 import undetected_chromedriver as uc
-from typing import Union, Any, List, Tuple
-from tqdm import tqdm
-import time, json
+from typing import Any
 
 
 class DriverEngine:
 
     def __init__(self):
         self.driver: Any | None = None
+        self.cfg_loader = ConfigManager().cfg
+        self.logger = AppLogger()
         self._init_driver()
 
     def _init_driver(self):
