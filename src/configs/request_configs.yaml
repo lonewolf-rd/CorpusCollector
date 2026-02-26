@@ -1,0 +1,3 @@
+urls:
+  article_root: https://dergipark.org.tr/tr/download/article-file/
+  timeout: 15
