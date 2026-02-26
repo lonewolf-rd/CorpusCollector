@@ -2,4 +2,6 @@ include:
  - logging.yaml
  - scraping_configs.yaml
  - request_configs.yaml
+ - form_configs.yaml
+
 
