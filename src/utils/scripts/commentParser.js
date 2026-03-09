@@ -7,6 +7,18 @@ function isValidUrl(str) {
     }
 }
 
+function cleanText(text) {
+    text = text.replace(/https?:\/\/\S+/g, '');
+    text = text.replace(/www\.\S+/g, '');
+    text = text.replace(/---\s*spoiler\s*---/gi, '');
+    text = text.replace(/son güncelleme:\s*\d{2}\.\d{2}\.\d{4}\s*\d{2}\.\d{2}/gi, '');
+    text = text.replace(/[:\-=*_.]{3,}/g, '');
+    text = text.replace(/%\d+/g, '');
+    text = text.replace(/\s+/g, ' ').trim();
+
+    return text;
+}
+
 function parseComment(element) {
     let result = [];
 
@@ -15,31 +27,25 @@ function parseComment(element) {
 
     contentDiv.childNodes.forEach(n => {
         if (n.nodeType === 3) {
-            let txt = n.textContent.trim();
+            let txt = cleanText(n.textContent);
             if (txt !== "") {
                 result.push({ type: "text", value: txt });
             }
         }
         else if (n.nodeType === 1) {
             if (n.classList.contains("b")) {
-                result.push({
-                    type: "b",
-                    value: n.textContent.trim()
-                });
+                let txt = cleanText(n.textContent);
+                if (txt !== "") {
+                    result.push({ type: "b", value: txt });
+                }
             }
             else if (n.classList.contains("url")) {
-                let href = n.href ? n.href.trim() : "";
-                let text = n.textContent.trim();
-                if (href.startsWith("http") || text.startsWith("www.") || isValidUrl(href)) {
-                    result.push({ type: "url", value: href });
-                } else if (text !== "") {
-                    result.push({ type: "text", value: text });
-                }
+                return;
             }
             else {
                 let skipTags = ["FOOTER", "A", "BUTTON", "SPAN"];
                 if (!skipTags.includes(n.tagName)) {
-                    let txt = n.textContent.trim();
+                    let txt = cleanText(n.textContent);
                     if (txt !== "") {
                         result.push({ type: "text", value: txt });
                     }
