@@ -16,6 +16,8 @@ dependencies = [
   "langdetect==1.0.9",
   "tqdm==4.67.2",
   "PyPDF2==3.0.1",
+  "beautifulsoup4==4.14.3",
+  "lxml==6.1.0"
 ]
 
 [tool.setuptools.packages.find]

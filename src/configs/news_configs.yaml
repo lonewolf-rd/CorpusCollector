@@ -1,0 +1,13 @@
+news:
+  # outer
+  timeout: 10
+  base_url: "https://www.hurriyet.com.tr/dunya/"
+  next_button: "//div[@class='container']//div[@class='paging']//a[@class='paging__btn   paging__btn--nav paging__btn--next']"
+  news_hrefs: "//div[@class='category__list__item']//a[@class='category__list__item--cover']"
+
+  # inner
+  title_path: "//h1[@class='news-detail-title']" # text
+  spot_path: "//div[@class='col-xl-17 col-lg-16 news-left-content']//div[@class='news-content__inf']//h2" # text
+  body_path: "//div[@class='col-xl-17 col-lg-16 news-left-content']//div[@class='news-content readingTime']//p" # text
+
+

@@ -3,5 +3,6 @@ include:
  - scraping_configs.yaml
  - request_configs.yaml
  - form_configs.yaml
+ - news_configs.yaml
 
 
