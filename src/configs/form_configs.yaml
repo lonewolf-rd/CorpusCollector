@@ -1,0 +1,30 @@
+form_driver:
+  root_url: https://eksisozluk.com/basliklar/tarihte-bugun
+  timeout: 10
+  min_length: 100
+
+
+
+form_xpaths:
+
+  # outer
+  sidebar: //div[@id='index-section']
+  year_container: //div[@id='index-section']//select[@id='TodayInPastYearsDropDown']
+  year_dropdown: //div[@id='index-section']//select[@id='TodayInPastYearsDropDown']//option
+  selected_year: //div[@id='index-section']//select[@id='TodayInPastYearsDropDown']//option[@selected='selected']
+  topic_list: //div[@id='index-section']//ul[@class='topic-list partial']//li//a
+  more_button: //div[@id='index-section']//div//a[@id='quick-index-continue-link']
+  pager_container: //div[@class='pager']
+  next_page_button: //div[@class='pager']//a[@rel='next']
+  popup: //div[@id='onetrust-banner-sdk']//button[@aria-label='kapat']
+
+  # inner
+  comment_card: //section[@id='content-body']//ul[@id='entry-item-list']//li[@id='entry-item']//div[@class='content']
+  hrefs: //a[@class='b']
+  urls: //a[@class='url']
+  page_container: //div[@class='clearfix sub-title-container']
+  next_button: //div[@class='clearfix sub-title-container']//a[@rel='next']
+  content_body: //section[@id='content-body']//ul[@id='entry-item-list']//li[@id='entry-item']
+
+javascripts:
+  scroll_down: window.scrollTo(0, document.body.scrollHeight);

@@ -1,5 +1,5 @@
 driver:
-  version: 144
+  version: 147
   timeout: 10
 
 xpaths:
