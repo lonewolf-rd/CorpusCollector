@@ -10,7 +10,7 @@ The framework was built to produce the training corpus behind the morphology-awa
 
 ## Related Work
 
-The corpus produced by this repository underpins the following artifacts:
+The corpus produced by this repository underpins the following artifacts. Everything — the collection pipeline, the cleaned dataset, the trained tokenizer, and the accompanying paper — is fully open source.
 
 - **Tokenizer:** [TurkishTokenizer-Alpha-v1](https://github.com/lonewolf-rd/TurkishTokenizer-Alpha-v1) — a morphology-aware Turkish tokenizer.
 - **Released Model:** [lonewolflab/Morpheus-TR-50K](https://huggingface.co/lonewolflab/Morpheus-TR-50K) — the 50K-vocabulary release on Hugging Face.
@@ -45,6 +45,19 @@ Target-site templates live under `src/configs/`:
 - `logging.yaml` — logger configuration
 
 ---
+
+## Preprocessing & Data Cleaning
+
+The pipeline cleans text both **inline** during collection and **once more** during corpus consolidation, so noise never accumulates into the final artifact.
+
+- **Source-side language gating.** Every candidate title or entry is passed through a `langdetect`-based filter; anything that is not classified as Turkish is dropped before it ever reaches disk. For academic content, Turkish and English links are split into separate files at crawl time.
+- **PDF-to-text extraction.** Academic PDFs are parsed with `PyPDF2`, then case-folded and whitespace-collapsed (`\s+ → ` `). Section boundaries are recovered with anchored regexes (`öz … anahtar kelimeler` for the abstract, `giriş … kaynaklar` for the body), so boilerplate like headers, page numbers, and reference lists are excised in the same pass.
+- **HTML noise removal.** News and forum crawlers extract text from a small set of pinned XPaths (headline, lead, body, entry content), which structurally excludes navigation, ads, and sidebar markup.
+- **Whitespace and empty-line normalization.** During consolidation, each line is stripped, internal whitespace runs are collapsed to a single space (`" ".join(text.split())`), and empty lines are skipped.
+- **Encoding sanitization.** A final `sanitize_corpus` pass re-decodes the file as UTF-8 with `errors="ignore"`, dropping malformed byte sequences that survived upstream parsing.
+- **Format normalization.** Heterogeneous `.txt` and nested `.json` artifacts are flattened into a uniform **one-sample-per-line** layout — the format expected by the downstream tokenizer trainer.
+
+The end result is a single `corpus.txt` where each line is a clean, Turkish-only, whitespace-normalized text sample.
 
 ---
 
@@ -113,12 +126,6 @@ xpaths:
 ```
 
 `ConfigManager` honors `include:` directives, so child YAML files are merged into the parent configuration automatically.
-
----
-
-## Data and Ethics
-
-The collected data is intended **solely for research purposes**, specifically the training of an academic tokenizer. Users are responsible for honoring the terms of service of the source sites, throttling collection to reasonable rates, and refraining from redistributing copyrighted material. The full training corpus behind the released model is not publicly distributed.
 
 ---
 
