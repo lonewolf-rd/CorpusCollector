@@ -12,7 +12,7 @@ The framework was built to produce the training corpus behind the morphology-awa
 
 The corpus produced by this repository underpins the following artifacts. Everything — the collection pipeline, the cleaned dataset, the trained tokenizer, and the accompanying paper — is fully open source.
 
-- **Tokenizer:** [TurkishTokenizer-Alpha-v1](https://github.com/lonewolf-rd/TurkishMorpheus) — a morphology-aware Turkish tokenizer.
+- **Tokenizer:** [TurkishMorpheus](https://github.com/lonewolf-rd/TurkishMorpheus) — a morphology-aware Turkish tokenizer.
 - **Released Model:** [lonewolflab/Morpheus-TR-50K](https://huggingface.co/lonewolflab/Morpheus-TR-50K) — the 50K-vocabulary release on Hugging Face.
 - **Organization:** [lonewolf-rd](https://github.com/lonewolf-rd)
 
